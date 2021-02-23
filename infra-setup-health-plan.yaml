@@ -1,0 +1,11 @@
+---
+- name: Create a vm
+  hosts: localhost
+  connection: local
+  vars:
+   ssh_keys:
+      path: "{{ key_path }}"
+      key_data: "{{ key_value }}"
+  roles:
+  #- resource_groups
+   - variables

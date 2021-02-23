@@ -1,0 +1,6 @@
+---
+- name: Create a vm
+  hosts: localhost
+  connection: local
+  roles:
+  - resource_groups_teardown
