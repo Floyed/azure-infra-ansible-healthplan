@@ -1,4 +1,4 @@
 - name: read variable file
   debug:
    msg: "{{ lookup('file','vars.yaml') | from_yaml }}"
-  register: data
+  register: variables

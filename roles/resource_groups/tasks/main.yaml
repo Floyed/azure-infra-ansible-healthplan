@@ -49,14 +49,22 @@
     public_ip_name: publicip1
     security_group: secgroup001
 
+- name: Print ssh key information
+  ansible.builtin.debug:
+    var: variables
+    verbosity: 2
+
 - name: Create a virtual machine
   azure_rm_virtualmachine:
    resource_group: healthplan_resource_group
    name: healthplanvm01
-   vm_size: Standard_D1
+   vm_size: Standard_B1ls
    admin_username: floyed
    ssh_password_enabled: false
-   ssh_public_keys: "{{ ssh_keys }}"
+   ssh_public_keys: 
+    - path: "{{ variables.msg.path }}"
+      # key_data: "{{ ssh_public_key }}"
+      key_data: "{{ lookup('file', variables.msg.ssh_public_key_path ) }}"
    image:
     offer: Centos
     publisher: OpenLogic
